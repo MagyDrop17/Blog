@@ -1,0 +1,23 @@
+services:
+
+  db:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: spike
+      POSTGRES_PASSWORD: spike
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
