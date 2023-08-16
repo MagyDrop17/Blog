@@ -1,4 +1,4 @@
-# spring data jpa
+# flyway
 
 server:
   port: 8080
@@ -22,4 +22,4 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show_sql: false
+    show_sql: true
