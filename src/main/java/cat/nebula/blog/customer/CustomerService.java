@@ -13,7 +13,7 @@ public class CustomerService {
 
     private final CustomerDao customerDao;
 
-    public CustomerService(@Qualifier("jpa") CustomerDao customerDao) {
+    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
 
@@ -21,7 +21,7 @@ public class CustomerService {
         return customerDao.selecAllCustomers();
     }
 
-    public Customer getCustomer(Integer id) {
+    public Customer getCustomer(Long id) {
         return customerDao.selectCustomerById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Customer " + id + " does not exist"));
     }
@@ -30,7 +30,7 @@ public class CustomerService {
 
         String email = customerRegistrationRequest.email();
 
-        if (customerDao.existsCusotmerByEmail(email)) {
+        if (customerDao.existsCustomerByEmail(email)) {
             throw new DuplicateResourceException("Email already exists");
         }
 
@@ -44,7 +44,7 @@ public class CustomerService {
 
     }
 
-    public void deleteCustomer(Integer customerId) {
+    public void deleteCustomer(Long customerId) {
 
         if (!customerDao.existsCustomerById(customerId)) {
             throw new ResourceNotFoundException("Customer " + customerId + " not found");
@@ -54,7 +54,7 @@ public class CustomerService {
 
     }
 
-    public void updateCustomer(Integer customerId, CustomerUpdateRequest customerUpdateRequest) {
+    public void updateCustomer(Long customerId, CustomerUpdateRequest customerUpdateRequest) {
 
         // check if customer exists
 
@@ -74,7 +74,7 @@ public class CustomerService {
 
         if (customerUpdateRequest.email() != null && !customerUpdateRequest.email().equals(customer.getEmail())) {
 
-            if (customerDao.existsCusotmerByEmail(customerUpdateRequest.email())) {
+            if (customerDao.existsCustomerByEmail(customerUpdateRequest.email())) {
                 throw new DuplicateResourceException("Email already exists");
             }
 
