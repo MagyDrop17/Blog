@@ -1,17 +1,15 @@
 package cat.nebula.blog.customer;
 
 import cat.nebula.blog.AbstractTestcontainers;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
@@ -36,7 +34,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         List<Customer> customers = underTest.selecAllCustomers();
 
@@ -57,7 +55,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         long id = underTest.selecAllCustomers()
                 .stream()
@@ -93,7 +91,28 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
     }
 
     @Test
-    void inserCustomer() {
+    void insertCustomer() {
+
+        String email = FAKER.internet().emailAddress() + "-" + UUID.randomUUID();
+
+        Customer customer = new Customer(
+                FAKER.name().fullName(),
+                email,
+                FAKER.number().numberBetween(18, 100)
+        );
+
+        underTest.insertCustomer(customer);
+
+        List<Customer> customers = underTest.selecAllCustomers();
+
+        System.out.println("customers: " + customers);
+
+        assertThat(customers)
+                .isNotEmpty()
+                .hasSize(1)
+                .first()
+                .isEqualToIgnoringGivenFields(customer, "id");
+
     }
 
     @Test
@@ -107,7 +126,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         boolean actual = underTest.existsCustomerByEmail(email);
 
@@ -137,7 +156,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()
@@ -166,7 +185,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()
@@ -202,7 +221,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()
@@ -238,7 +257,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()
@@ -276,7 +295,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()
@@ -317,7 +336,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()
@@ -358,7 +377,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 FAKER.number().numberBetween(18, 100)
         );
 
-        underTest.inserCustomer(customer);
+        underTest.insertCustomer(customer);
 
         Long id = underTest.selecAllCustomers()
                 .stream()

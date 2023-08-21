@@ -1,7 +1,6 @@
 package cat.nebula.blog.customer;
 
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +24,7 @@ public class CustomerJPADataAccessService implements CustomerDao {
     }
 
     @Override
-    public void inserCustomer(Customer customer) {
+    public void insertCustomer(Customer customer) {
         customerRepository.save(customer);
     }
 

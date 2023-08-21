@@ -1,7 +1,6 @@
 package cat.nebula.blog.customer;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
 @Entity

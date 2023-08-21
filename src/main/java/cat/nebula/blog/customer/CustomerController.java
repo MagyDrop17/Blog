@@ -1,7 +1,6 @@
 package cat.nebula.blog.customer;
 
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

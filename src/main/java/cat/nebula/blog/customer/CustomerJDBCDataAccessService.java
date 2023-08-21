@@ -2,7 +2,6 @@ package cat.nebula.blog.customer;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +44,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
     }
 
     @Override
-    public void inserCustomer(Customer customer) {
+    public void insertCustomer(Customer customer) {
 
         var sql = """
                 INSERT INTO customer (name, email, age)
@@ -55,6 +54,8 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
         int result = jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getAge());
 
         System.out.println("JdbcTemplate: " + jdbcTemplate);
+
+        System.out.println("insertCustomer: " + result);
 
     }
 

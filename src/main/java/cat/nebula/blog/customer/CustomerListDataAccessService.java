@@ -1,7 +1,6 @@
 package cat.nebula.blog.customer;
 
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +45,7 @@ public class CustomerListDataAccessService implements CustomerDao{
     }
 
     @Override
-    public void inserCustomer(Customer customer) {
+    public void insertCustomer(Customer customer) {
         customers.add(customer);
     }
 

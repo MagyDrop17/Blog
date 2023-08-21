@@ -5,7 +5,6 @@ import cat.nebula.blog.exception.RequestValidationException;
 import cat.nebula.blog.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -40,7 +39,7 @@ public class CustomerService {
                 customerRegistrationRequest.age()
         );
 
-        customerDao.inserCustomer(customer);
+        customerDao.insertCustomer(customer);
 
     }
 
