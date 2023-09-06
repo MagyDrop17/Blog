@@ -57,12 +57,8 @@ public class CustomerService {
 
         // check if customer exists
 
-        if (!customerDao.existsCustomerById(customerId)) {
-            throw new ResourceNotFoundException("Customer " + customerId + " not found");
-        }
-
-        // get customer
-        Customer customer = getCustomer(customerId);
+        Customer customer = customerDao.selectCustomerById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer " + customerId + " not found"));
 
         boolean changes = false;
 
