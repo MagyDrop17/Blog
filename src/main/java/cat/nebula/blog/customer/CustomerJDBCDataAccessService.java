@@ -53,10 +53,6 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
 
         int result = jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getAge());
 
-        System.out.println("JdbcTemplate: " + jdbcTemplate);
-
-        System.out.println("insertCustomer: " + result);
-
     }
 
     @Override

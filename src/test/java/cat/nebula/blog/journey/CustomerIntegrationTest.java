@@ -14,7 +14,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 import java.util.Random;
 
-
 import java.util.List;
 import java.util.UUID;
 
@@ -33,9 +32,12 @@ public class CustomerIntegrationTest {
 
         // Create Registration request
 
-        String name = "foofoofoo";
-        String email = "foofoofooooo@foo.com";
-        int age = 20;
+        Faker faker = new Faker();
+        Name fakerName = faker.name();
+
+        String name = fakerName.fullName();
+        String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@nebula.cat";
+        int age = new Random().nextInt(100);
 
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
                 name,

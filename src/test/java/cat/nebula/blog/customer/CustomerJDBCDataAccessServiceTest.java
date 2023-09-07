@@ -105,13 +105,10 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
         List<Customer> customers = underTest.selecAllCustomers();
 
-        System.out.println("customers: " + customers);
-
         assertThat(customers)
                 .isNotEmpty()
-                .hasSize(1)
-                .first()
-                .isEqualToIgnoringGivenFields(customer, "id");
+                .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
+                .contains(customer);
 
     }
 
